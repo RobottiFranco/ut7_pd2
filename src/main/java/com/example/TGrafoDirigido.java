@@ -196,7 +196,11 @@ public class TGrafoDirigido implements IGrafoDirigido {
         int j = new ArrayList<>(vertices.keySet()).indexOf(etiquetaVertice);
         double excentricidad = 0.0;
         for (int i = 0; i < floyd.length; i++) {
-            excentricidad = (floyd[i][j] > excentricidad) ? floyd[i][j] : excentricidad;
+            if (floyd[i][j] == Double.MAX_VALUE) {
+                excentricidad = 0;
+            } else {
+                excentricidad = (floyd[i][j] > excentricidad) ? floyd[i][j] : excentricidad;
+            }
         }
         return excentricidad;
     }
